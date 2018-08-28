@@ -1,5 +1,6 @@
 # fotoshare.co-album-downloader
-Download complete albums from fotoshare.co
+
+Download complete albums from fotoshare.co (dslrBooth)
 
 # Installation
 
@@ -32,6 +33,7 @@ In both cases there will be created a directory which contains:
 - Album media files (jpg, gif, mp4 etc.)
 - CSV file (images.csv) with the album contents, providing the fields:
 
-| Image URL                                         | Fotoshare.co Path | Width | Height | Type |
-|---------------------------------------------------|-------------------|-------|--------|------|
-| https://i.fotoshare.co/xx/19700101_010000_001.jpg | /i/abcdefg        | 1800  | 1200   | jpg  |
+| "Image URL"                                   | GIF/Thumbnail | "Fotoshare.co Path"                                                                | Width | Height | Type | 
+|-----------------------------------------------|---------------|------------------------------------------------------------------------------------|-------|--------|------| 
+| https://i.fotoshare.co/xx/20100101_120000.jpg | /i/xxxxxxx    | https://t.fotoshare.co/v1/height/240/https://i.fotoshare.co/xx/20100101_120000.jpg | 1200  | 1800   | jpg  | 
+| https://i.fotoshare.co/xx/20100101_120000.mp4 | /i/xxxxxxx    | https://i.fotoshare.co/xx/20100101_120000.gif                                      | 0     | 0      | mp4  | 

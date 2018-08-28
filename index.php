@@ -18,21 +18,36 @@ if (isset($_GET['url']) || !empty($argv[1])) {
     $data = [];
     $client = new Client();
     $crawler = $client->request('GET', $url);
-    $crawler->filter('[data-img][data-url]')->each(function ($node) use ($data) {
+    $crawler->filter('[data-img][data-url]')->each(function ($node) {
         global $data;
-        $data[] = $node->extract(['data-img', 'data-url', 'data-width', 'data-height', 'data-type'])[0];
+        $data[] = $node->extract(['data-img', 'data-url', 'data-thumb', 'data-width', 'data-height', 'data-type'])[0];
     });
+    
+    $files_count = count($data);
+    if (php_sapi_name() == 'cli') { echo "$files_count files found." . PHP_EOL; }
 
     try {
         $writer = Writer::createFromPath($folder . DIRECTORY_SEPARATOR . 'images.csv', 'w+');
-        $writer->insertOne(['Image URL', 'Fotoshare.co Path', 'Width', 'Height', 'Type']);
+        $writer->insertOne(['Image URL', 'GIF/Thumbnail', 'Fotoshare.co Path', 'Width', 'Height', 'Type']);
         $writer->insertAll($data);
     } catch (CannotInsertRecord $e) {
         echo $e->getMessage();
     }
-
-    foreach ($data as $row) {
-        file_put_contents($folder . DIRECTORY_SEPARATOR . basename($row[0]), file_get_contents($row[0]));
+    foreach ($data as $key => $row) {
+        $index                 = ++$key;
+        $download              = [];
+        $download['file'] = $row[0];
+        $download['gif']  = ($row[5] == 'mp4') ? $row[2] : false;
+        foreach ($download as $link) {
+            $path = $folder . DIRECTORY_SEPARATOR . basename($link);
+            if ($link === false) { continue; }
+            if (!file_exists($path)) {
+                file_put_contents($path, file_get_contents($link));
+                if (php_sapi_name() == 'cli') { echo "($index/$files_count) Downloaded: " . basename($link) . PHP_EOL; }
+            } else {
+                if (php_sapi_name() == 'cli') { echo "($index/$files_count) File skipped: " . basename($link) . PHP_EOL; }
+            }
+        }
     }
 }
 
