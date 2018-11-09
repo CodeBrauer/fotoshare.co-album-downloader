@@ -16,7 +16,7 @@ PHP 7.1.3 or newer
 
 # Usage
 
-Notice: The album must be Public.
+Notice: The album must be Public. (You can set it temporarily Public for the download, and set it back to private after the download finished) 
 
 **For smaller albums:**
 
