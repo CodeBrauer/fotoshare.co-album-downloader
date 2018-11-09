@@ -16,6 +16,8 @@ PHP 7.1.3 or newer
 
 # Usage
 
+Notice: The album must be Public.
+
 **For smaller albums:**
 
 Just call the index.php with a webserver or create one like `php -S localhost:3000` and use the provided UI
