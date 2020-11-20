@@ -1,6 +1,6 @@
 # ARCHIVED
 
-This repository is no longer needed, as fotoshare.co now offers a download for all images.
+This repository is no longer maintained and updated, as fotoshare.co now offers a download for all images.
 
 # fotoshare.co-album-downloader
 
