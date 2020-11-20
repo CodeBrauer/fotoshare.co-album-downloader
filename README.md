@@ -1,3 +1,7 @@
+# ARCHIVED
+
+This repository is no longer needed, as fotoshare.co now offers a download for all images.
+
 # fotoshare.co-album-downloader
 
 Download complete albums from fotoshare.co (dslrBooth)
